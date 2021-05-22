@@ -17,6 +17,7 @@ app.use(morgan("dev"));
 // Registering The Routers Here
 app.use("/api/products", require("./views/products"));
 app.use("/api/users", require("./views/users"));
+app.use("/api/orders", require("./views/orders"));
 
 // Registering Costume Error Middleware
 app.use(notFound);
