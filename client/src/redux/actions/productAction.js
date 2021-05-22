@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
@@ -6,7 +7,6 @@ import {
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
 } from '../constants/productConstants';
-import axios from 'axios';
 
 // Adding The API URL into a Variable
 const API_URL = 'http://localhost:5000/api';
@@ -25,7 +25,7 @@ export const listProducts = () => async dispatch => {
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
-                    : error.message,
+                    : error.message
         });
     }
 };

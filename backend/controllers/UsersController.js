@@ -30,6 +30,29 @@ exports.getProfile = asyncHandler(async (req, res) => {
     }
 });
 
+exports.updateProfile = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email
+        if (req.body.password) {
+            user.password = req.body.password
+        };
+        const updatedUser = await user.save();
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            token: generateToken(updatedUser._id)
+        });
+    } else {
+        res.status(400)
+        throw new Error("Bad Request, Invalid User Data");
+    }
+});
+
 exports.regNewUser = asyncHandler(async (req, res) => {
     const { email, name, password } = req.body;
     const isExistedUser = await User.findOne({ email });
@@ -39,7 +62,7 @@ exports.regNewUser = asyncHandler(async (req, res) => {
     };
     const user = await User.create({ email, name, password });
     if (user) {
-        res.json({
+        res.status(201).json({
             _id: user._id,
             name: user.name,
             email: user.email,
