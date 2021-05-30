@@ -19,6 +19,11 @@ app.use("/api/products", require("./views/products"));
 app.use("/api/users", require("./views/users"));
 app.use("/api/orders", require("./views/orders"));
 
+// Costume Made Endpoint to Return Pay-pal Client ID
+app.get('/api/config/paypal', (req, res) => {
+    res.send(process.env.PAYPAL_CLIENT_ID);
+});
+
 // Registering Costume Error Middleware
 app.use(notFound);
 app.use(errorHandler);

@@ -12,7 +12,6 @@ exports.fetchAllProducts = asyncHandler(async (req, res) => {
 
 exports.getProductById = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
-    console.log(req.params.id);
     if (product) {
         return res.json({
             message: "Successfully Fetched Product",

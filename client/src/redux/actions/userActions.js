@@ -10,11 +10,13 @@ import {
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
     USER_DETAILS_FAIL,
+    USER_DETAILS_RESET,
     USER_UPDATE_REQUEST,
     USER_UPDATE_SUCCESS,
     USER_UPDATE_FAIL,
     USER_UPDATE_RESET
 } from '../constants/userConstants';
+import { ORDER_LIST_MY_RESET } from '../constants/orderConstants';
 
 // Adding The API URL into a Variable
 const API_URL = 'http://localhost:5000/api';
@@ -42,6 +44,8 @@ export const loginUser = (email, password) => async dispatch => {
 export const logoutUser = () => dispatch => {
     localStorage.removeItem('userInfo');
     dispatch({ type: USER_LOGOUT });
+    dispatch({ type: USER_DETAILS_RESET });
+    dispatch({ type: ORDER_LIST_MY_RESET });
 };
 
 export const registerUser = (name, email, password) => async dispatch => {

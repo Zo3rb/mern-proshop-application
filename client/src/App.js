@@ -7,7 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 // Internal Imports
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { CartScreen, HomeScreen, ProductScreen, LoginScreen, ProfileScreen, RegisterScreen, ShippingScreen, PaymentScreen, PlaceOrderScreen } from './screens';
+import { CartScreen, HomeScreen, ProductScreen, LoginScreen, ProfileScreen, RegisterScreen, ShippingScreen, PaymentScreen, PlaceOrderScreen, OrderScreen } from './screens';
 
 
 const App = () => {
@@ -25,6 +25,7 @@ const App = () => {
           <Route exact path="/shipping" component={ShippingScreen} />
           <Route exact path="/payment" component={PaymentScreen} />
           <Route exact path="/placeorder" component={PlaceOrderScreen} />
+          <Route exact path="/orders/:id" component={OrderScreen} />
         </Container>
       </main>
       <Footer />
