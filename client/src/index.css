@@ -19,3 +19,9 @@ h2 {
 .rating span {
   margin: 0.1rem;
 }
+
+@media only screen and (min-width: 768px) {
+  #admin {
+    margin-left: -30px;
+  }
+}
