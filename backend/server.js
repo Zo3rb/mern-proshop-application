@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -18,11 +19,15 @@ app.use(morgan("dev"));
 app.use("/api/products", require("./views/products"));
 app.use("/api/users", require("./views/users"));
 app.use("/api/orders", require("./views/orders"));
+app.use("/api/upload", require("./views/uploadRoutes"));
 
 // Costume Made Endpoint to Return Pay-pal Client ID
 app.get('/api/config/paypal', (req, res) => {
     res.send(process.env.PAYPAL_CLIENT_ID);
 });
+
+// Make The Uploads Folder Static
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 // Registering Costume Error Middleware
 app.use(notFound);

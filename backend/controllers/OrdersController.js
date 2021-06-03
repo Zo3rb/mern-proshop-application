@@ -55,3 +55,21 @@ exports.getMyOrders = asyncHandler(async (req, res) => {
     const userOrders = await Order.find({ user: req.user._id });
     res.json(userOrders);
 });
+
+exports.listAllOrdersForAdmin = asyncHandler(async (req, res) => {
+    const orders = await Order.find({}).populate('user', 'id name');
+    res.json(orders);
+});
+
+exports.updateDeliverByAdmin = asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+        const updatedOrder = await order.save();
+        res.json(updatedOrder);
+    } else {
+        res.status(404);
+        throw new Error("Order's Not Found");
+    }
+});

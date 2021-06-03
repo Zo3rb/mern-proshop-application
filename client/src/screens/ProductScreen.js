@@ -42,7 +42,14 @@ const ProductScreen = ({ match, history }) => {
                 ) : (
                     <Row>
                         <Col md={6}>
-                            <Image src={product.image} alt={product.name} fluid />
+                            <Image
+                                src={product.image}
+                                alt={product.name}
+                                fluid
+                                onError={e => {
+                                    e.target.onerror = null; e.target.src = "https://via.placeholder.com/450?text=Can't+Read+The+Image+Please+Edit+The+Image+With+URL"
+                                }}
+                            />
                         </Col>
                         <Col md={3}>
                             <ListGroup variant='flush'>

@@ -11,7 +11,13 @@ const Product = ({ product }) => {
     return (
         <Card className='my-3 p-3 rounded'>
             <Link to={`/product/${product._id}`}>
-                <Card.Img src={product.image} variant='top' />
+                <Card.Img
+                    src={product.image}
+                    variant='top'
+                    onError={e => {
+                        e.target.onerror = null; e.target.src = "https://via.placeholder.com/450?text=Can't+Read+The+Image+Please+Edit+The+Image+With+URL"
+                    }}
+                />
             </Link>
 
             <Card.Body>
