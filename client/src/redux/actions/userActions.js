@@ -28,7 +28,7 @@ import {
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants';
 
 // Adding The API URL into a Variable
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://mernproshopapplication.herokuapp.com/api';
 
 export const loginUser = (email, password) => async dispatch => {
     try {

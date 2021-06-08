@@ -43,7 +43,7 @@ const OrderScreen = ({ match, history }) => {
         };
 
         const addPayPalScript = async () => {
-            const API_URL = 'http://localhost:5000/api';
+            const API_URL = 'https://mernproshopapplication.herokuapp.com/api';
             const { data: clientId } = await axios.get(`${API_URL}/config/paypal`);
             const script = document.createElement('script');
             script.type = 'text/javascript';

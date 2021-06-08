@@ -49,7 +49,7 @@ const ProductEditScreen = ({ match, history }) => {
     }, [dispatch, history, productId, product, successUpdate]);
 
     const uploadFileHandler = async e => {
-        const API_URL = 'http://localhost:5000/api';
+        const API_URL = 'https://mernproshopapplication.herokuapp.com/api';
         const file = e.target.files[0];
         const formData = new FormData();
         formData.append('image', file);

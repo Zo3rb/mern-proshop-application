@@ -7,7 +7,7 @@ import {
 } from '../constants/cartConstants';
 
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://mernproshopapplication.herokuapp.com/api';
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
     const { data } = await axios.get(`${API_URL}/products/${id}`);
