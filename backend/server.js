@@ -11,9 +11,11 @@ const app = express();
 require('./db')();
 
 // Registering The Middleware
+if (process.env.NODE_ENV === "development") {
+    app.use(morgan("dev"));
+};
 app.use(express.json());
 app.use(cors());
-app.use(morgan("dev"));
 
 // Registering The Routers Here
 app.use("/api/products", require("./views/products"));
@@ -25,6 +27,16 @@ app.use("/api/upload", require("./views/uploadRoutes"));
 app.get('/api/config/paypal', (req, res) => {
     res.send(process.env.PAYPAL_CLIENT_ID);
 });
+
+// Serve Static Build of React on the Server
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../client/build/index.html')));
+} else {
+    app.get('/', (req, res) => {
+        res.send("API IS RUNNING ...");
+    });
+};
 
 // Make The Uploads Folder Static
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));

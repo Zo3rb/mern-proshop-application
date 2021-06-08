@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // Internal Imports
 import { logoutUser } from '../redux/actions/userActions';
+import SearchBox from '../components/SearchBox';
 
 const Header = () => {
 
@@ -27,6 +28,7 @@ const Header = () => {
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
+                        <SearchBox />
                         <Nav className="ml-auto">
                             <LinkContainer to="/cart">
                                 <Nav.Link><i className='fas fa-shopping-cart'></i> Cart</Nav.Link>
